@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream"
+    android:orientation="vertical"
+    tools:context=".ui.SettingsActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/forest"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="@string/settings"
+        app:titleTextColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/screen_padding">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/units_title"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="@color/forest_dark" />
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <RadioButton
+                android:id="@+id/radio_lux"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/units_lux" />
+
+            <RadioButton
+                android:id="@+id/radio_fc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/units_fc" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/units_hint"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="@color/text_muted" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_clear"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/clear_data"
+            android:textAllCaps="false"
+            android:textColor="@color/danger"
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/danger" />
+    </LinearLayout>
+</LinearLayout>

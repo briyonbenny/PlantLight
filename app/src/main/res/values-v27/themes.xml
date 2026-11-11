@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.PlantLight" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/forest</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/mint</item>
+        <item name="colorOnPrimaryContainer">@color/forest_dark</item>
+        <item name="colorSecondary">@color/terracotta</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">#F3E0D4</item>
+        <item name="colorOnSecondaryContainer">#5A2E16</item>
+        <item name="android:colorBackground">@color/cream</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_main</item>
+        <item name="colorOnSurfaceVariant">@color/text_muted</item>
+        <item name="android:statusBarColor">@color/forest_dark</item>
+        <item name="android:navigationBarColor">@color/cream</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowBackground">@color/cream</item>
+        <item name="toolbarStyle">@style/Widget.PlantLight.Toolbar</item>
+    </style>
+</resources>

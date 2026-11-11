@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream"
+    android:orientation="vertical"
+    tools:context=".ui.SpotDetailsActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/forest"
+        app:navigationIcon="@drawable/ic_back"
+        app:titleTextColor="@color/white"
+        tools:title="Kitchen windowsill" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/screen_padding">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/surface"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="0dp"
+                app:strokeColor="#E6E0D6"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@color/mint">
+
+                        <LinearLayout
+                            android:id="@+id/photo_placeholder"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_camera"
+                                app:tint="@color/forest" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/add_photo_hint"
+                                android:textColor="@color/forest_dark" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/image_photo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/photo_of_spot"
+                            android:scaleType="centerCrop"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/text_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?attr/textAppearanceLabelLarge"
+                            android:textColor="@color/white"
+                            tools:text="Bright light" />
+
+                        <TextView
+                            android:id="@+id/text_reading"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
+                            android:textColor="@color/text_main"
+                            tools:text="Average reading: 1,250 lux" />
+
+                        <TextView
+                            android:id="@+id/text_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
+                            android:textColor="@color/text_muted"
+                            tools:text="Saved 10 Nov 2026" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/suggested_plants"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="@color/forest_dark" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/surface"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="0dp"
+                app:strokeColor="#E6E0D6"
+                app:strokeWidth="1dp">
+
+                <TextView
+                    android:id="@+id/text_plants"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="2dp"
+                    android:padding="16dp"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textColor="@color/text_main"
+                    tools:text="Fiddle Leaf Fig\nNeeds bright, indirect light." />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_photo"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/take_photo"
+                android:textAllCaps="false"
+                app:backgroundTint="@color/forest"
+                app:cornerRadius="16dp"
+                app:icon="@drawable/ic_camera"
+                app:iconGravity="textStart" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_share"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/share"
+                android:textAllCaps="false"
+                android:textColor="@color/forest"
+                app:cornerRadius="16dp"
+                app:icon="@drawable/ic_share"
+                app:iconGravity="textStart"
+                app:iconTint="@color/forest"
+                app:strokeColor="@color/forest" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_delete"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/delete"
+                android:textAllCaps="false"
+                android:textColor="@color/danger"
+                app:icon="@drawable/ic_delete"
+                app:iconGravity="textStart"
+                app:iconTint="@color/danger" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

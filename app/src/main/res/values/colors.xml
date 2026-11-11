@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="forest">#2D6A4F</color>
+    <color name="forest_dark">#1B4332</color>
+    <color name="forest_mid">#40916C</color>
+    <color name="mint">#D8F3DC</color>
+    <color name="cream">#F7F4EF</color>
+    <color name="surface">#FFFcf7</color>
+    <color name="terracotta">#C17F59</color>
+    <color name="gold">#C9A227</color>
+    <color name="sage">#6A8F71</color>
+    <color name="text_main">#1F2A24</color>
+    <color name="text_muted">#5C6B63</color>
+    <color name="gauge_track">#E4E0D8</color>
+    <color name="level_low">#6A8F71</color>
+    <color name="level_medium">#C9A227</color>
+    <color name="level_bright">#C17F59</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="danger">#9B3A2F</color>
+    <color name="launcher_bg">#2D6A4F</color>
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Plant Light</string>
+    <string name="measure_title">Measure</string>
+    <string name="measure_hint">Hold your phone where the plant will live. The gauge shows how bright the spot is.</string>
+    <string name="spot_name_hint">Spot name, e.g. Kitchen windowsill</string>
+    <string name="save_spot">Save spot</string>
+    <string name="my_spots">My Spots</string>
+    <string name="settings">Settings</string>
+    <string name="manual_prompt">This device has no ambient light sensor. Choose a light level instead:</string>
+    <string name="level_low">Low</string>
+    <string name="level_medium">Medium</string>
+    <string name="level_bright">Bright</string>
+    <string name="error_name_required">Please give this spot a name</string>
+    <string name="error_wait_for_reading">Wait a moment for the light reading to settle</string>
+    <string name="spot_saved">Saved %1$s</string>
+    <string name="view">View</string>
+    <string name="empty_spots">No spots yet.
+Measure a place in your home and save it.</string>
+    <string name="level_light">%1$s light</string>
+    <string name="reading_value">Average reading: %1$s</string>
+    <string name="reading_manual">Light level chosen manually (no sensor on this device)</string>
+    <string name="reading_manual_short">Chosen manually</string>
+    <string name="saved_on">Saved %1$s</string>
+    <string name="spot_meta">%1$s  ·  %2$s</string>
+    <string name="suggested_plants">Suggested plants</string>
+    <string name="plant_line">%1$s
+%2$s</string>
+    <string name="no_plants">No plant suggestions for this light level yet.</string>
+    <string name="photo_of_spot">Photo of this spot</string>
+    <string name="take_photo">Take photo</string>
+    <string name="replace_photo">Replace photo</string>
+    <string name="share">Share</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_spot_title">Delete this spot?</string>
+    <string name="delete_spot_message">“%1$s” and its photo will be removed from this device.</string>
+    <string name="spot_deleted">Spot deleted</string>
+    <string name="error_missing_spot">That spot could not be opened.</string>
+    <string name="units_title">Light units</string>
+    <string name="units_lux">Lux (lx)</string>
+    <string name="units_fc">Foot-candles (fc)</string>
+    <string name="units_hint">The light sensor reports lux. Foot-candles are converted from that reading (1 fc ≈ 10.764 lux).</string>
+    <string name="clear_data">Clear saved data</string>
+    <string name="clear_data_title">Clear all saved spots?</string>
+    <string name="clear_data_message">This removes every saved spot and photo from this device. The built-in plant list is kept.</string>
+    <string name="clear">Clear</string>
+    <string name="data_cleared">Saved data cleared</string>
+    <string name="add_photo_hint">Add a photo of the spot</string>
+    <string name="delete_content_description">Delete spot</string>
+</resources>
