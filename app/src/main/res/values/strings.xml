@@ -48,4 +48,41 @@ Measure a place in your home and save it.</string>
     <string name="data_cleared">Saved data cleared</string>
     <string name="add_photo_hint">Add a photo of the spot</string>
     <string name="delete_content_description">Delete spot</string>
+
+    <!-- Milestone 2: live tracking -->
+    <string name="track_light">Track light</string>
+    <string name="track_title">Track light: %1$s</string>
+    <string name="track_hint">Leave the phone where the plant will sit. While tracking, the app records the light every half second, shows the trend, and saves one reading per second. Tap Stop to save the session and update this spot.</string>
+    <string name="start_tracking">Start tracking</string>
+    <string name="stop_and_save">Stop and save</string>
+    <string name="live_now">Live now</string>
+    <string name="waiting_for_sensor">Waiting for the light sensor…</string>
+    <string name="no_sensor_tracking">This device has no ambient light sensor, so live tracking is not available. You can still set the light level by hand on the Measure screen.</string>
+    <string name="stat_min">Min
+%1$s</string>
+    <string name="stat_avg">Average
+%1$s</string>
+    <string name="stat_max">Max
+%1$s</string>
+    <string name="elapsed">Tracking for %1$s  ·  %2$d samples</string>
+    <string name="not_tracking">Not tracking yet. The graph shows the live light.</string>
+    <string name="status_good">Good for %1$s</string>
+    <string name="status_too_dark">Too dark for %1$s (needs %2$s light)</string>
+    <string name="status_too_bright">Brighter than %1$s likes (needs %2$s light). Use a sheer curtain or move it back.</string>
+    <string name="live_suits">Right now this spot suits %1$s plants: %2$s</string>
+    <string name="track_too_short">Track for at least 5 seconds before saving.</string>
+    <string name="track_saved">Saved. Average %1$s, so this spot is now %2$s light.</string>
+    <string name="leave_tracking_title">Stop tracking?</string>
+    <string name="leave_tracking_message">Save this session to the spot, or discard it?</string>
+    <string name="save">Save</string>
+    <string name="discard">Discard</string>
+    <string name="light_history">Light history</string>
+    <string name="no_history">No tracking sessions yet. Tap Track light to record how the light changes here.</string>
+    <string name="history_line">%1$s  ·  %2$s
+Avg %3$s  (min %4$s, max %5$s)  ·  %6$s</string>
+    <string name="suggestions_note">Updated automatically from the latest light reading.</string>
+    <string name="hold_steady">Hold steady…</string>
+    <string name="reading_stable">Reading is stable</string>
+    <string name="measure_suits">Good here: %1$s</string>
+    <string name="camera_unavailable">No camera app found on this device.</string>
 </resources>

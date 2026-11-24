@@ -142,6 +142,58 @@
                     tools:text="Fiddle Leaf Fig\nNeeds bright, indirect light." />
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Milestone 2: suggestions follow the latest tracked reading. -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/suggestions_note"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="@color/text_muted" />
+
+            <!-- Milestone 2: opens TrackingActivity (explicit intent with the spot ID). -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_track"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/track_light"
+                android:textAllCaps="false"
+                app:backgroundTint="@color/terracotta"
+                app:cornerRadius="16dp"
+                app:icon="@drawable/ic_leaf"
+                app:iconGravity="textStart" />
+
+            <!-- Milestone 2: recent tracking sessions for this spot. -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/light_history"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="@color/forest_dark" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/surface"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="0dp"
+                app:strokeColor="#E6E0D6"
+                app:strokeWidth="1dp">
+
+                <TextView
+                    android:id="@+id/text_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="2dp"
+                    android:padding="16dp"
+                    android:text="@string/no_history"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textColor="@color/text_main" />
+            </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_photo"
                 android:layout_width="match_parent"

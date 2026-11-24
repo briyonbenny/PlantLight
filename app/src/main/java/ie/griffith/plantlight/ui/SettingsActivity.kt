@@ -25,6 +25,8 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        // Milestone 2: keep the toolbar below the status bar (lecturer feedback).
+        SystemBars.setUp(this, binding.root, binding.toolbar)
         app = application as PlantLightApp
 
         binding.toolbar.setNavigationOnClickListener { finish() }

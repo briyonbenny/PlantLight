@@ -1,5 +1,6 @@
 package ie.griffith.plantlight
 
+import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -9,6 +10,7 @@ import ie.griffith.plantlight.data.Plant
 import ie.griffith.plantlight.data.SettingsRepository
 import ie.griffith.plantlight.data.Spot
 import ie.griffith.plantlight.ui.SpotDetailsActivity
+import ie.griffith.plantlight.ui.TrackingActivity
 
 /**
  * Central place for the implicit and explicit Intents used by the app.
@@ -20,6 +22,12 @@ object PlantLightIntents {
     /** Explicit intent: opens Spot Details and passes the saved spot's ID. */
     fun spotDetails(context: Context, spotId: Long): Intent {
         return Intent(context, SpotDetailsActivity::class.java)
+            .putExtra(EXTRA_SPOT_ID, spotId)
+    }
+
+    /** Milestone 2 explicit intent: opens live light tracking for one saved spot. */
+    fun tracking(context: Context, spotId: Long): Intent {
+        return Intent(context, TrackingActivity::class.java)
             .putExtra(EXTRA_SPOT_ID, spotId)
     }
 
@@ -57,11 +65,16 @@ object PlantLightIntents {
             if (photoUri != null) {
                 type = "image/jpeg"
                 putExtra(Intent.EXTRA_STREAM, photoUri)
+                // Milestone 2 fix: ClipData + read permission so the receiving
+                // app (and the chooser preview) can actually open the photo.
+                clipData = ClipData.newRawUri(spot.name, photoUri)
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             } else {
                 type = "text/plain"
             }
         }
-        return Intent.createChooser(intent, "Share ${spot.name}")
+        return Intent.createChooser(intent, "Share ${spot.name}").apply {
+            if (photoUri != null) addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
     }
 }

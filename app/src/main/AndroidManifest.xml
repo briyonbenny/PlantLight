@@ -47,6 +47,12 @@
             android:exported="false"
             android:parentActivityName=".ui.MySpotsActivity" />
 
+        <!-- Milestone 2: live light tracking for one saved spot. -->
+        <activity
+            android:name=".ui.TrackingActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.SpotDetailsActivity" />
+
         <activity
             android:name=".ui.SettingsActivity"
             android:exported="false"

@@ -43,6 +43,31 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:contentDescription="@string/measure_title" />
+
+            <!-- Milestone 2: steadiness hint and live plant ideas from the sensor. -->
+            <TextView
+                android:id="@+id/text_stability"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAppearance="?attr/textAppearanceTitleSmall"
+                android:textColor="@color/terracotta"
+                android:visibility="gone"
+                tools:text="Hold steady…"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/text_suits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="@color/text_main"
+                android:visibility="gone"
+                tools:text="Good here: Spider Plant, Monstera, Dracaena"
+                tools:visibility="visible" />
             <LinearLayout
                 android:id="@+id/manual_group"
                 android:layout_width="match_parent"

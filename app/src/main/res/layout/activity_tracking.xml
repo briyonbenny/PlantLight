@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Milestone 2: live light tracking screen (opened from Spot Details). -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream"
+    android:orientation="vertical"
+    tools:context=".ui.TrackingActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/forest"
+        app:navigationIcon="@drawable/ic_back"
+        app:titleTextColor="@color/white"
+        tools:title="Track light: Kitchen" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/screen_padding">
+
+            <TextView
+                android:id="@+id/text_no_sensor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@color/mint"
+                android:padding="12dp"
+                android:text="@string/no_sensor_tracking"
+                android:textColor="@color/forest_dark"
+                android:visibility="gone" />
+
+            <!-- Live reading card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/surface"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="0dp"
+                app:strokeColor="#E6E0D6"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/live_now"
+                        android:textAppearance="?attr/textAppearanceLabelLarge"
+                        android:textColor="@color/text_muted" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_live_lux"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textAppearance="?attr/textAppearanceHeadlineMedium"
+                            android:textColor="@color/text_main"
+                            tools:text="640 lux" />
+
+                        <TextView
+                            android:id="@+id/text_live_level"
+                            style="@style/Widget.PlantLight.Badge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_badge_medium"
+                            tools:text="Medium light" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/text_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        android:textColor="@color/forest_dark"
+                        tools:text="Good for Spider Plant" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Live graph (custom view) -->
+            <ie.griffith.plantlight.ui.LiveLightGraphView
+                android:id="@+id/graph"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/surface"
+                android:contentDescription="@string/track_light" />
+
+            <!-- Running min / average / max -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_min"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/text_main"
+                    tools:text="Min\n410 lux" />
+
+                <TextView
+                    android:id="@+id/text_avg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/text_main"
+                    android:textStyle="bold"
+                    tools:text="Average\n640 lux" />
+
+                <TextView
+                    android:id="@+id/text_max"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/text_main"
+                    tools:text="Max\n900 lux" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/text_elapsed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="@color/text_muted"
+                tools:text="Tracking for 1:20  ·  160 samples" />
+
+            <TextView
+                android:id="@+id/text_live_plants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="@color/text_main"
+                tools:text="Right now this spot suits Medium plants: Spider Plant, Monstera" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_start_stop"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/start_tracking"
+                android:textAllCaps="false"
+                app:backgroundTint="@color/forest"
+                app:cornerRadius="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/track_hint"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="@color/text_muted" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

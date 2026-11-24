@@ -20,7 +20,9 @@ import ie.griffith.plantlight.data.LightLevel
 import ie.griffith.plantlight.data.LightReading
 import ie.griffith.plantlight.data.LightUnit
 import ie.griffith.plantlight.data.LuxAverager
+import ie.griffith.plantlight.data.PlantCatalog
 import ie.griffith.plantlight.data.Spot
+import ie.griffith.plantlight.data.namesFor
 import ie.griffith.plantlight.databinding.ActivityMeasureBinding
 import kotlinx.coroutines.launch
 
@@ -44,6 +46,8 @@ class MeasureActivity : AppCompatActivity(), SensorEventListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMeasureBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        // Milestone 2: keep the toolbar below the status bar (lecturer feedback).
+        SystemBars.setUp(this, binding.root, binding.toolbar)
         app = application as PlantLightApp
 
         binding.toolbar.setOnMenuItemClickListener { item ->
@@ -117,6 +121,20 @@ class MeasureActivity : AppCompatActivity(), SensorEventListener {
         latestAverage = average
         latestLevel = LightClassifier.classify(average)
         binding.gauge.setReading(average, latestLevel, true, unit)
+
+        // Milestone 2: tell the user to hold still until the reading settles,
+        // and suggest plants for the live level as it changes.
+        val stable = averager.isStable()
+        binding.textStability.visibility = View.VISIBLE
+        binding.textStability.setText(if (stable) R.string.reading_stable else R.string.hold_steady)
+        binding.textStability.setTextColor(
+            getColor(if (stable) R.color.forest else R.color.terracotta)
+        )
+        binding.textSuits.visibility = View.VISIBLE
+        binding.textSuits.text = getString(
+            R.string.measure_suits,
+            PlantCatalog.namesFor(latestLevel).take(3).joinToString(", ")
+        )
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {

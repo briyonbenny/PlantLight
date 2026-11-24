@@ -1,5 +1,6 @@
 package ie.griffith.plantlight.ui
 
+import android.content.ActivityNotFoundException
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -16,6 +17,7 @@ import ie.griffith.plantlight.data.LightUnit
 import ie.griffith.plantlight.data.Plant
 import ie.griffith.plantlight.data.SettingsRepository
 import ie.griffith.plantlight.data.Spot
+import ie.griffith.plantlight.data.TrackingSession
 import ie.griffith.plantlight.databinding.ActivitySpotDetailsBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
@@ -59,7 +61,13 @@ class SpotDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySpotDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        // Milestone 2: keep the toolbar below the status bar (lecturer feedback).
+        SystemBars.setUp(this, binding.root, binding.toolbar)
         app = application as PlantLightApp
+
+        // Milestone 2 fix: remember the photo file if the Activity is recreated
+        // while the camera app is open (e.g. rotation or low memory).
+        pendingPhoto = savedInstanceState?.getString(KEY_PENDING_PHOTO)?.let { File(it) }
 
         // The spot to show is supplied by the explicit Intent from Measure or My Spots.
         spotId = intent.getLongExtra(PlantLightIntents.EXTRA_SPOT_ID, -1L)
@@ -73,6 +81,10 @@ class SpotDetailsActivity : AppCompatActivity() {
         binding.buttonPhoto.setOnClickListener { launchCamera() }
         binding.buttonShare.setOnClickListener { shareSpot() }
         binding.buttonDelete.setOnClickListener { confirmDelete() }
+        // Milestone 2: explicit intent to the live tracking screen, passing the spot ID.
+        binding.buttonTrack.setOnClickListener {
+            startActivity(PlantLightIntents.tracking(this, spotId))
+        }
 
         val dateFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
         lifecycleScope.launch {
@@ -93,6 +105,39 @@ class SpotDetailsActivity : AppCompatActivity() {
                 currentPlants = plants
                 bindPlants(plants)
             }
+        }
+
+        // Milestone 2: recent tracking sessions, updated live from Room.
+        lifecycleScope.launch {
+            combine(
+                app.database.sessionDao().observeRecent(spotId, HISTORY_SIZE),
+                app.settings.units
+            ) { sessions, newUnit -> sessions to newUnit }
+                .collectLatest { (sessions, newUnit) -> bindHistory(sessions, newUnit, dateFormat) }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        pendingPhoto?.let { outState.putString(KEY_PENDING_PHOTO, it.absolutePath) }
+    }
+
+    private fun bindHistory(sessions: List<TrackingSession>, unit: LightUnit, dateFormat: DateFormat) {
+        if (sessions.isEmpty()) {
+            binding.textHistory.setText(R.string.no_history)
+            return
+        }
+        binding.textHistory.text = sessions.joinToString("\n\n") { s ->
+            val seconds = s.durationMs / 1000
+            getString(
+                R.string.history_line,
+                dateFormat.format(Date(s.startedAt)),
+                "%d:%02d".format(seconds / 60, seconds % 60),
+                SettingsRepository.format(s.avgLux, unit),
+                SettingsRepository.format(s.minLux, unit),
+                SettingsRepository.format(s.maxLux, unit),
+                LightLevel.fromStorage(s.lightLevel).label
+            )
         }
     }
 
@@ -141,7 +186,13 @@ class SpotDetailsActivity : AppCompatActivity() {
         val file = app.photos.newPhotoFile()
         pendingPhoto = file
         val uri = app.photos.uriFor(file)
-        takePicture.launch(uri)
+        try {
+            takePicture.launch(uri)
+        } catch (e: ActivityNotFoundException) {
+            // Milestone 2 fix: no camera app (some emulators) -> message, not a crash.
+            pendingPhoto = null
+            Toast.makeText(this, R.string.camera_unavailable, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun shareSpot() {
@@ -172,5 +223,10 @@ class SpotDetailsActivity : AppCompatActivity() {
         LightLevel.LOW -> R.drawable.bg_badge_low
         LightLevel.MEDIUM -> R.drawable.bg_badge_medium
         LightLevel.BRIGHT -> R.drawable.bg_badge_bright
+    }
+
+    companion object {
+        private const val KEY_PENDING_PHOTO = "pending_photo"
+        private const val HISTORY_SIZE = 5
     }
 }
