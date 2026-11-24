@@ -42,3 +42,7 @@ object PlantCatalog {
             notes = "A succulent that needs bright light to stay compact.")
     )
 }
+
+/** Milestone 2: plant names for a light level, straight from the built-in catalogue. */
+fun PlantCatalog.namesFor(level: LightLevel): List<String> =
+    ALL.filter { it.lightNeed == level.storageKey }.map { it.name }

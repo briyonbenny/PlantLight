@@ -40,6 +40,9 @@ interface LightReadingDao {
     @Insert
     suspend fun insert(reading: LightReading): Long
 
+    @Insert
+    suspend fun insertAll(readings: List<LightReading>)
+
     @Query("DELETE FROM light_readings")
     suspend fun deleteAll()
 }
@@ -57,4 +60,14 @@ interface PlantDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(plants: List<Plant>)
+}
+
+/** Milestone 2: tracking sessions (history shown on Spot Details). */
+@Dao
+interface TrackingSessionDao {
+    @Query("SELECT * FROM tracking_sessions WHERE spotId = :spotId ORDER BY startedAt DESC LIMIT :limit")
+    fun observeRecent(spotId: Long, limit: Int): Flow<List<TrackingSession>>
+
+    @Insert
+    suspend fun insert(session: TrackingSession): Long
 }

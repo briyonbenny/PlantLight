@@ -42,5 +42,18 @@ class LuxAverager(
         samples.clear()
     }
 
+    /**
+     * Milestone 2: true when the readings in the window are steady
+     * (they vary by less than 15% of the average, or by under 5 lux in the dark).
+     * Used for the "Hold steady" hint on the Measure screen.
+     */
+    fun isStable(): Boolean {
+        if (samples.size < 3) return false
+        val values = samples.map { it.second }
+        val spread = values.max() - values.min()
+        val average = values.average().toFloat()
+        return spread <= maxOf(5f, average * 0.15f)
+    }
+
     val hasSamples: Boolean get() = samples.isNotEmpty()
 }
