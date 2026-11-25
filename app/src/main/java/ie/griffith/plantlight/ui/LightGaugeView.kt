@@ -204,6 +204,12 @@ class LightGaugeView @JvmOverloads constructor(
         canvas.drawText(text, x, y, captionPaint)
     }
 
+    override fun onDetachedFromWindow() {
+        animator?.cancel()
+        animator = null
+        super.onDetachedFromWindow()
+    }
+
     companion object {
         // Horseshoe opening at the bottom: 135 degrees through to 45 degrees (270 sweep).
         private const val START_ANGLE = 135f

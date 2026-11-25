@@ -250,6 +250,9 @@ class TrackingActivity : AppCompatActivity(), SensorEventListener {
             )
             db.spotDao().update(updated)
             spot = updated
+            // Reload the target plant so the live Good / Too dark / Too bright
+            // status matches the light level that was just saved.
+            targetPlant = db.plantDao().getByLightNeed(updated.lightLevel).firstOrNull()
             Snackbar.make(
                 binding.root,
                 getString(R.string.track_saved, SettingsRepository.format(average, unit), level.label),
