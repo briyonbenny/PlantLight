@@ -56,6 +56,7 @@ Measure a place in your home and save it.</string>
     <string name="start_tracking">Start tracking</string>
     <string name="stop_and_save">Stop and save</string>
     <string name="live_now">Live now</string>
+    <string name="live_graph_placeholder">Live graph will go here</string>
     <string name="waiting_for_sensor">Waiting for the light sensor…</string>
     <string name="no_sensor_tracking">This device has no ambient light sensor, so live tracking is not available. You can still set the light level by hand on the Measure screen.</string>
     <string name="stat_min">Min
